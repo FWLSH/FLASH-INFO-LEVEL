@@ -110,7 +110,7 @@ def home():
         "success": True,
         "message": "Free Fire Level Info API",
         "endpoints": {
-            "/level/3419823759?key=Flash": "Get level progress for player",
+            "/level/<uid>?key=Flash": "Get level progress for player",
             "/levels": "Get all level EXP requirements"
         },
         "credit": "@juli_dvrma"
@@ -126,12 +126,6 @@ def get_level_info(uid):
             "success": False,
             "message": "Invalid Key. Please use ?key=Flash"
         }), 401
-
-    try:
-        player_data = fetch_player_info(uid)
-        return jsonify(player_data)
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
 
     try:
         player_data = fetch_player_info(uid)
