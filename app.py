@@ -121,7 +121,7 @@ def get_level_info(uid):
     """Get basic level information for a player"""
     # --- Check for User Key ---
     user_key = request.args.get('key')
-    if user_key != "Flash", "DANGER":
+    if user_key not in ["Flash", "DANGER"]:
         return jsonify({
             "success": False,
             "message": "Invalid Key. Please use ?key=Flash"
