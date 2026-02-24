@@ -125,7 +125,7 @@ def get_level_info(uid):
     if user_key not in allowed_keys:
         return jsonify({
             "success": False,
-            "message": "Invalid Key. Please use ?key=Flash or ?key=DENGER"
+            "message": "Invalid Key. Please use ?key=Flash"
         }), 401
 
     try:
