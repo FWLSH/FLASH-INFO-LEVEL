@@ -118,14 +118,20 @@ def home():
 
 @app.route('/level/<uid>')
 def get_level_info(uid):
-    """Get basic level information for a player"""
-    # --- Check for User Key ---
     user_key = request.args.get('key')
+    
+    # Simple logic: Jo key aa be mathi ek pan na hoy to error aapo
     if user_key not in ["Flash", "DANGER"]:
         return jsonify({
             "success": False,
-            "message": "Invalid Key. Please use ?key=Flash"
+            "message": "Invalid Key!"
         }), 401
+
+    try:
+        player_data = fetch_player_info(uid)
+        return jsonify(player_data)
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
     try:
         player_data = fetch_player_info(uid)
